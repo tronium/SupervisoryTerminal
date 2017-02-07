@@ -1,0 +1,3 @@
+EOS		EQU	0AH	; = LF, digunakan sebagai penanda akhir string
+CR		EQU	0DH	; diartikan sebagai CR+LF
+FF		EQU	0CH	; FormFeed, bagi rutin LCD -> ClearSreen

@@ -1,0 +1,16 @@
+C_RMT_RtsOff	EQU	16		; sisa buf _saat_ RTS dimatikan
+C_RMT_RtsOn	EQU	C_RMT_RtsOff+2	; harus > RtsOff+1 (anti 'racing')
+C_JMB_RtsOff	EQU	16
+C_JMB_RtsOn	EQU	C_JMB_RtsOff+2
+
+C_RMT_FCSAwal	EQU	0FFH
+
+FrameMark	EQU	11011011B		; 0C7H XOR 1CH = 0DBH = 'Û'
+FrameEsc	EQU	11011100B		; 0C7H XOR 1BH = 0DCH = 'Ü'
+EscTranspose	EQU	11000111B		; 0C7H, menggunakan logika XOR
+
+KS_ParamCacat	EQU	0C2H
+KJ_Ditolak	EQU	0C3H
+KJ_Gagal	EQU	0C4H
+KJ_OtoJMB	EQU	80H
+KJ_OtoKEP	EQU	81H

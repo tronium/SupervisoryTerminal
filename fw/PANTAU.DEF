@@ -1,0 +1,21 @@
+C_KP_PjgNama		EQU	10			; MAX = MAX_NV/2048 !!
+C_KP_JmlBernama	EQU	128
+C_KP_Bernama_8H	EQU	(C_KP_JmlBernama-1)/8
+C_KP_Bernama_3L	EQU	((C_KP_JmlBernama-1) MOD 8) + 1
+
+C_KP_BCCAwal		EQU	0FFH
+
+C_LOG_PjgEntry		EQU	9	; alokasi per entry
+C_LOG_JmlEntry		EQU	100
+
+;OffsetEntry
+OE_LOG_Jam		EQU	0	;[0,1,2] = jam, mnt, dtk
+OE_LOG_Mnt		EQU	1
+OE_LOG_Dtk		EQU	2
+OE_LOG_Tgl		EQU	3	;[3,4,5] = tgl, bln, thn
+OE_LOG_Bln		EQU	4
+OE_LOG_Thn		EQU	5
+;OE_LOG_BedaKEP		EQU	6	;[6,7,8] = NomKEP, perubahan, sts_baru
+OE_LOG_Sumber		EQU	6	; 0=NonKEP
+OE_LOG_NomKEP		EQU	7
+OE_LOG_StatusKEP	EQU	8

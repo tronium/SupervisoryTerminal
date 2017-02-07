@@ -1,0 +1,29 @@
+$INCLUDE(SCH.DEF)
+
+PUBLIC	HW_PPI_PA, HW_PPI_PB, HW_PPI_PC, HW_PPI_Ctrl
+PUBLIC	PPI_Init
+
+C_PPI_Init	EQU	10010001b	; AllMode=0 , PA=PCl=In, PB=PCh=Out
+
+	XSEG	AT HW_PPI_Dasar
+
+HW_PPI_PA:	DS	1
+HW_PPI_PB:	DS	1
+HW_PPI_PC:	DS	1
+HW_PPI_Ctrl:	DS	1
+		DS	252
+
+SegC_PPI	SEGMENT	CODE
+		RSEG	SegC_PPI
+
+PPI_Init:
+	MOV	DPTR,#HW_PPI_Ctrl
+	MOV	A,#C_PPI_Init
+	MOVX	@DPTR,A
+	MOV	DPTR,#HW_PPI_PC
+	MOV	A,#0FFH
+	MOVX	@DPTR,A
+	CLR	A			; tidak ada pemeriksaan h/w
+	RET
+
+	END

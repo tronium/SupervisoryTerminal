@@ -1,0 +1,21 @@
+USING	0
+
+RCcL	EQU	R0	; Reg Cacah LOW
+;RCcH	EQU	R5	; Reg Cacah HIGH
+
+IDP	EQU	R1	; Ptr IDATA
+;RSpR	EQU	A	; Referensi Dasar ISTK
+RCcS	EQU	R4	; Jml RS ISTK
+RCcT	EQU	R5	; Jml RT ISTK
+
+XPL	EQU	R6	; DPtr2 LOW
+XPH	EQU	R7	; DPtr2 HIGH, lebih hemat byte dari pemakaian P2:Ri
+AXPL	EQU	AR6
+AXPH	EQU	AR7
+
+RPOpsi	EQU	R0
+RTmbl	EQU	R0
+
+C_RTC_ThnAwal	EQU	1998
+C_RTC_ThnAkhir	EQU	2099		; perlu dibatasi ?
+C_RTC_PjgTahun	EQU	C_RTC_ThnAkhir-C_RTC_ThnAwal+1

@@ -1,0 +1,30 @@
+; Pendefenisian konstanta untuk pewaktu
+
+;Fosc			EQU	11059200	; Hz
+Fcpu			EQU	9216		; x100 Hz, = 1/12 Fosc
+
+Toleransi		EQU	5		; Persen (%)
+PB_FrekIrq		EQU	3600		; Hz, frekuensi irq (min 3,6K)
+PS_Frek1anDurasi	EQU	400		; Hz, satuan durasi
+PT_Fcuplik		EQU	30		; Hz
+PT_Tganda		EQU	134		; ms, timeout On/Off klik ganda
+PT_Ttunda		EQU	200		; ms, tout ulang
+PT_Fulang		EQU	PT_Fcuplik/2	; tombol/s, laju pengulangan
+LCD_TkedipOn		EQU	767		; ms
+LCD_TkedipOff		EQU	234		; ms
+
+C_PB_UCFrekIrq		EQU	256-(Fcpu/(PB_FrekIrq/100))
+C_PS_DC1anDurasi	EQU	PB_FrekIrq/PS_Frek1anDurasi
+C_KP_DCPantau		EQU	4
+C_PT_DCCuplik		EQU	(PB_FrekIrq/PT_Fcuplik)/C_KP_DCPantau
+C_PT_DCGanda		EQU	(PT_Fcuplik*PT_Tganda)/1000
+C_PT_DCTunda		EQU	(PT_Fcuplik*PT_Ttunda)/1000
+C_PT_DCUlang		EQU	PT_Fcuplik/PT_Fulang
+C_LCD_DCKdpOn		EQU	(PT_Fcuplik*LCD_TkedipOn)/1000
+C_LCD_DCKdpOff		EQU	(PT_Fcuplik*LCD_TkedipOff)/1000
+
+
+FrekWDTRTC	EQU	PT_Fcuplik
+C_WDT_RTCMax	EQU	FrekWDTRTC+1	; = (FrekWDTRTC*(100+toleransi))/100
+C_WDT_RTCMin	EQU	FrekWDTRTC-1	; = (FrekWDTRTC*(100-toleransi))/100
+C_WDT_RTCCek	EQU	256-(C_WDT_RTCMax-C_WDT_RTCMin)

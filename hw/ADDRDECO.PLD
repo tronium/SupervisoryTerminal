@@ -1,0 +1,56 @@
+Name       AddrDecoder;
+Partno     XXXXX;
+Date       3/10/97;
+Revision   01;
+Designer   Ori Novanda;
+Company    XXXXX;
+Assembly   XXXXX;
+Location   XXXXX;
+Device     P16L8;
+
+/******************************************************************/
+/*                                                                */
+/*                                                                */
+/*                                                                */
+/******************************************************************/
+/*  Allowable Target Device Types: PAL16L8                        */
+/******************************************************************/
+
+/**  Masukan  **/
+
+Pin [1..8]   = [a8..15];
+Pin 9        = !rd ;
+Pin 11       = !wr ;
+
+/**  Keluaran  **/
+
+Pin 12       = RAMCS2 ;
+Pin 13       = RAMCS1 ;
+Pin 14       = RAMCS0 ;
+Pin 15       = !SB_ALE ;
+Pin 16       = !PB_WR ;
+Pin 17       = !PB_RD ;
+Pin 18       = LCD_EN ;
+Pin 19       = !PIA_CS ;
+
+/* Yang Lama Terbalik */
+/* Pin 18       = !PIA_CS ; */
+/* Pin 19       = LCD_EN ; */
+
+
+/** Deklarasi Variabel **/
+
+field alamat = [a15..8];
+
+/**  Persamaan Logika  **/
+
+RAMCS0  = alamat:[0000..F8FF];
+/* RAMCS0  = alamat:[0000..1FFF]; */
+/* RAMCS1  = alamat:[2000..3FFF]; */
+/* RAMCS2  = alamat:[4000..5FFF]; */
+
+!SB_ALE = !(alamat:[F900..F9FF] & wr);
+!PB_RD  = !(alamat:[FA00..FAFF] & rd);
+!PB_WR  = !(alamat:[FA00..FAFF] & wr);
+!PIA_CS = !(alamat:[FB00..FBFF]);
+LCD_EN  = ((alamat:[FC00..FFFF] & wr) # (alamat:[FC00..FFFF] & rd));
